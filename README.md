@@ -6,7 +6,9 @@
 
 ## :  GUI for NPSS(Numerical Propulsion System Simulation) input
 
-## 2023-06-27
+<details>   
+<summary style="font-size: 20px;">2023-06-27</summary>
+
 #### Data format : 
 1. extension : .map
 2. standard : Extracted from Turbomatch Map Library (09/2021) by Christos Nixarlidis.
@@ -29,3 +31,4 @@
 3. Turbine.map ->  x axis : dHqT, y axis : corrected mass flow(Wc)
 4. HPC.map ->
 
+</details>
