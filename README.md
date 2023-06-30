@@ -16,14 +16,18 @@
 #### Parsing :
 1. Re library
 2. fan.map  (PR, Wc depends on the same Nc, each beta)<br />
+```
    beta_Nc_Wc = re.findall(r'beta = (\d+)\s+{\s+Nc =  {(.*?)\}\s+Wc =  {(.*?)}', data, re.DOTALL) <br />
    beta_Nc_PR = re.findall(r'beta = (\d+)\s+{\s+Nc =  {(.*?)\}\s+PR =  {(.*?)}', data, re.DOTALL)
+```
 
-4. turbine.map (dHqT, Wc, each Nc)<br />
+3. turbine.map (dHqT, Wc, each Nc)<br />
+```
    turbine_Nc_dHqT= re.findall(r"Nc\s*=\s*(.*?)\s*{\s*dHqT\s*=\s*{(.*?)}", data, re.DOTALL) <br />
    turbine_Nc_Wc = re.findall(r"Nc\s*=\s*(.*?)\s*{\s*dHqT\s*=.*?\s*Wc\s*=\s*{(.*?)}", data, re.DOTALL)
+```
 
-5. HPC.map ->
+4. HPC.map ->
 
 #### Plot : 
 1. matplotlib
@@ -79,8 +83,9 @@ VIGV = 3 {
 
 3. HPC.map(VIGV, beta, Nc, Wc or PR): 
 
-
+```
    	vigv_blocks = re.findall(r'(VIGV = \d+ \{.*?\})', data, re.DOTALL)
+   
         beta_Nc_Wc = []
         beta_Nc_PR = []
 
@@ -103,10 +108,10 @@ VIGV = 3 {
                 beta_Nc_PR.append((vigv, beta, nc, pr))
 
         beta_values = [int(beta) for _, beta, _, _ in beta_Nc_Wc]
+```
 
-
-4. 2 scroll listboxes cannot be selected in one window for Tkinter.
-5. Parameter managing for VIGV -> global plot_window -> condition when plot the new window.
+5. 2 scroll listboxes cannot be selected in one window for Tkinter.
+6. Parameter managing for VIGV -> global plot_window -> condition when plot the new window.
 
 #### Plot :
 1. The same as a compressor, Fan.map, except the selection of VIGV value in advance.
