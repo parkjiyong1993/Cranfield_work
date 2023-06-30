@@ -79,6 +79,7 @@ VIGV = 3 {
 
 3. HPC.map(VIGV, beta, Nc, Wc or PR): 
 
+'''
    	vigv_blocks = re.findall(r'(VIGV = \d+ \{.*?\})', data, re.DOTALL)
 
         beta_Nc_Wc = []
@@ -103,6 +104,7 @@ VIGV = 3 {
                 beta_Nc_PR.append((vigv, beta, nc, pr))
 
         beta_values = [int(beta) for _, beta, _, _ in beta_Nc_Wc]
+'''
 
 4. 2 scroll listboxes cannot be selected in one window for Tkinter.
 5. Parameter managing for VIGV -> global plot_window -> condition when plot the new window.
