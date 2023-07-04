@@ -119,6 +119,12 @@ VIGV = 3 {
 </details>
 
 
+<details>   
+<summary style="font-size: 20px;">2023-07-04</summary>
+1. VIGV selection button
+2. 
+</details>
+
 
 
 ## :  GUI for NPSS(Numerical Propulsion System Simulation) output post-processing
