@@ -125,7 +125,7 @@ VIGV = 3 {
 	
 2. subplot vs figure for matlablib
 
-#### Nc plot function:
+#### Nc plot function for HPC:
    Nc values plotted for every selection of VIGV
   => parsing error for data : ```re.findall``` with ```data``` parameter, it shares the data inside. <br>
   => ```block``` parameter has to be used. (iteration is not necessary)
