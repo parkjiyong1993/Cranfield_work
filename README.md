@@ -121,10 +121,54 @@ VIGV = 3 {
 
 <details>   
 <summary style="font-size: 20px;">2023-07-04</summary>
-1. VIGV selection button
-2. 
+1. VIGV selection button update, optimized
+	
+2. subplot vs figure for matlablib
+
+#### Nc plot function:
+   Nc values plotted for every selection of VIGV
+  => parsing error for data : ```re.findall``` with ```data``` parameter, it shares the data inside. <br>
+  => ```block``` parameter has to be used. (iteration is not necessary)
+      
+   
+	```
+	vigv_blocks = re.findall(r'(VIGV\s+=\s+\d+\s+\{[^{}]*?(?:\{[^{}]*?(?:\{[^{}]*?\}[^{}]*?)*?\}[^{}]*?)*?\})', data, re.DOTALL)
+
+        beta_Nc_Wc = []
+        beta_Nc_PR = []
+        beta_Nc = []
+
+        # Iterate over each VIGV block
+        for block in vigv_blocks:
+            # Extract VIGV value
+            vigv = re.search(r'VIGV\s+=\s+(\d+)', block).group(1)
+            #print(block)
+            
+            beta_blocks = re.findall(r'(beta\s+=\s+\d+\s+\{[^{}]*?(?:\{[^{}]*?\}[^{}]*?)*?\})', block, re.DOTALL)
+            
+            for beta_block in beta_blocks:
+                beta = re.search(r'beta\s+=\s+(\d+)', beta_block).group(1)
+                nc = re.search(r'Nc\s+=\s+\{([^\}]*)\}', beta_block).group(1)
+                wc = re.search(r'Wc\s+=\s+\{([^\}]*)\}', beta_block).group(1) if re.search(r'Wc\s+=\s+\{([^\}]*)\}', beta_block) else None
+                pr = re.search(r'PR\s+=\s+\{([^\}]*)\}', beta_block).group(1) if re.search(r'PR\s+=\s+\{([^\}]*)\}', beta_block) else None
+                
+                if wc is not None:
+                    beta_Nc_Wc.append((vigv, beta, nc, wc))
+                
+                if pr is not None:
+                    beta_Nc_PR.append((vigv, beta, nc, pr))
+
+                beta_Nc.append((vigv, beta, nc))
+
+        beta_values = [int(beta) for _, beta, _, _ in beta_Nc_Wc]
+	```
 </details>
 
+<details>   
+<summary style="font-size: 20px;">2023-07-06</summary>
+1. album issue with VIGV selection is corrected.
+2. 
+</details>
 
 
 ## :  GUI for NPSS(Numerical Propulsion System Simulation) output post-processing
